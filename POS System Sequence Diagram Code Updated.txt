@@ -8,11 +8,15 @@ participant Payment Gateway
 participant Delivery System
 
 loop 
-User->Application: Search Pizzza to Purchase
+User->Application: Search Pizzza to Purchase 
+activate Application
 Application->User: Fetch Available Options for Customer
+deactivate Application
 
 User->Application: Add one pizza at a time
+activate Application
 Application->User: Added to shopping cart
+deactivate Application
 end 
 
 User->Application: Customer gives delivery address
@@ -21,7 +25,13 @@ User ->Payment Gateway: Adds debit and credit card details
 User ->Payment Gateway: Name and Mobile Number for mKash
 
 User->Application: Register for saving address and payment info
-Application-> Database: Address and payment info is saved as user gives consent
+activate Application
+Application-> Database: Address and payment info is send to database as user gives consent
+deactivate Application
+
+activate Database
+Database ->Database : Payment Info Saved
+deactivate Database
 
 Database->Database: Existing pizza shop information in the database
 
