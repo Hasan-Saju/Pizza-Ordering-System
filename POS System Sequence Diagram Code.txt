@@ -1,0 +1,38 @@
+title Pizza Ordering System
+
+participant User
+participant Application
+participant Database
+participant Pizza Shop
+participant Payment Gateway
+participant Delivery System
+
+loop 
+User->Application: Search Pizzza to Purchase
+Application->User: Fetch Available Options for Customer
+
+User->Application: Add one pizza at a time
+Application->User: Added to shopping cart
+end 
+
+User->Application: Customer gives delivery address
+
+User ->Payment Gateway: Adds debit and credit card details
+User ->Payment Gateway: Name and Mobile Number for mKash
+
+User->Application: Register for saving address and payment info
+Application-> Database: Address and payment info is saved as user gives consent
+
+Database->Database: Existing pizza shop information in the database
+
+Pizza Shop ->Application: Register in the POS system
+
+Application ->Database: Stored the information of pizza shop
+
+User->Application: Customer place an order
+Application->Pizza Shop: Shop gets an notification when an order is placed
+
+Pizza Shop->Application:Shop managers can manage their orders using their part of application
+
+Application ->Delivery System: After order is placed delivery system will get notifaction for delivery
+
