@@ -1,8 +1,8 @@
 title Pizza Ordering System
 
-participant User
+actor User
 participant Application
-participant Database
+database Database
 participant Pizza Shop
 participant Payment Gateway
 participant Delivery System
@@ -37,12 +37,16 @@ Database->Database: Existing pizza shop information in the database
 
 Pizza Shop ->Application: Register in the POS system
 
-Application ->Database: Stored the information of pizza shop
+Application ->Database: Store the information of pizza shop
 
+loop 
 User->Application: Customer place an order
+activate Application
 Application->Pizza Shop: Shop gets an notification when an order is placed
+deactivate Application
 
 Pizza Shop->Application:Shop managers can manage their orders using their part of application
 
 Application ->Delivery System: After order is placed delivery system will get notifaction for delivery
+end
 
